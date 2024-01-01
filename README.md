@@ -4,5 +4,7 @@ An app for monitoring different timezones
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To generate code for MobX state managment
+
+`flutter packages pub run build_runner build`
 
