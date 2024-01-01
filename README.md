@@ -6,7 +6,7 @@ An app for monitoring different timezones
 
 To generate code for MobX state management
 
-`flutter packages pub run build_runner build`
+`dart run build_runner build`
 
 To generate localization keys
 

@@ -24,6 +24,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
+  void dispose() {
+    state.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +55,10 @@ class _MainPageState extends State<MainPage> {
       body: ListView.builder(
           itemCount: state.items.length,
           itemBuilder: (context, index) {
-            return TimeListItem(data: state.items[index]);
+            return TimeListItem(
+              data: state.items[index],
+              state: state,
+            );
           }),
     );
   }
