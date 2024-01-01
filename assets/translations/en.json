@@ -1,0 +1,31 @@
+{
+  "app_name": "Team TimeZones",
+  "main_screen": {
+    "title": "TimeZones",
+    "add": "add",
+    "remove": "remove",
+    "edit": "edit",
+    "settings": "settings"
+  },
+  "settings": {
+    "title": "Settings",
+    "time_style": "Time Style",
+    "theme": "Theme",
+    "view_type": {
+      "title": "View priority",
+      "option_name": "Name first",
+      "option_city": "City first"
+    },
+    "share_list": "Share colleague list"
+  },
+  "edit_screen": {
+    "title_add": "Add a city",
+    "title_edit": "Edit city",
+    "city": "City",
+    "person": "Person",
+    "work_time": "Work time",
+    "work_from": "From",
+    "work_to": "to",
+    "color": "Color"
+  }
+}

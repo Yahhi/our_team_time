@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:our_team_time/core/localization/locale_keys.g.dart';
 import 'package:our_team_time/main_list/main_state.dart';
 import 'package:our_team_time/settings/settings_page.dart';
 import 'package:our_team_time/widgets/time_list_item.dart';
@@ -25,9 +27,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Team time'),
+        title: Text(LocaleKeys.main_screen_title.tr()),
         actions: [
           IconButton(
+              tooltip: LocaleKeys.main_screen_settings.tr(),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute<void>(
                     builder: (_) => const SettingsPage()));
@@ -36,6 +39,7 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        tooltip: LocaleKeys.main_screen_add.tr(),
         onPressed: () {
           Navigator.of(context).push(
               MaterialPageRoute<void>(builder: (_) => const EditItemPage()));

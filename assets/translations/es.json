@@ -1,0 +1,31 @@
+{
+  "app_name": "Team TimeZones",
+  "main_screen": {
+    "title": "Zonas horarias",
+    "add": "añadir",
+    "remove": "eliminar",
+    "edit": "editar",
+    "settings": "configuración"
+  },
+  "settings": {
+    "title": "Configuración",
+    "time_style": "Estilo de hora",
+    "theme": "Tema",
+    "view_type": {
+      "title": "Ver prioridad",
+      "option_name": "Nombre primero",
+      "option_city": "Ciudad primero"
+    },
+    "share_list": "Compartir lista de colegas"
+  },
+  "edit_screen": {
+    "title_add": "Agregar una ciudad",
+    "title_edit": "Editar ciudad",
+    "city": "Ciudad",
+    "person": "Persona",
+    "work_time": "Tiempo de trabajo",
+    "work_from": "De",
+    "work_to": "a",
+    "color": "Color"
+  }
+}

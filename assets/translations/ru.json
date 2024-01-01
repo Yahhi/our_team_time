@@ -1,0 +1,31 @@
+{
+  "app_name": "Team TimeZones",
+  "main_screen": {
+    "title": "Время у команды",
+    "add": "добавить",
+    "remove": "удалить",
+    "edit": "редактировать",
+    "settings": "настройки"
+  },
+  "settings": {
+    "title": "Настройки",
+    "time_style": "Способ отображения",
+    "theme": "Тема",
+    "view_type": {
+      "title": "Вид",
+      "option_name": "Первое имя",
+      "option_city": "Первый город"
+    },
+    "share_list": "Поделиться списком коллег"
+  },
+  "edit_screen": {
+    "title_add": "Добавить город",
+    "title_edit": "Изменить город",
+    "city": "Город",
+    "person": "Имя",
+    "work_time": "Время работы",
+    "work_from": "С",
+    "work_to": "до",
+    "color": "Цвет"
+  }
+}
