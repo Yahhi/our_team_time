@@ -4,6 +4,8 @@ import 'package:our_team_time/main_list/main_state.dart';
 import 'package:our_team_time/model/time_item.dart';
 import 'package:our_team_time/model/time_view_format.dart';
 
+import '../edit_item/edit_item_page.dart';
+
 class TimeListItem extends StatelessWidget {
   const TimeListItem({super.key, required this.data, required this.state});
 
@@ -12,12 +14,21 @@ class TimeListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(data.cityName),
-      trailing: Observer(builder: (context) {
-        return Text(data.timeInFormat(TimeViewFormat.h24,
-            requiredTime: state.visibleTime));
-      }),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute<void>(
+            builder: (_) => EditItemPage(
+                  item: data,
+                  state: state,
+                )));
+      },
+      child: ListTile(
+        title: Text(data.cityName),
+        trailing: Observer(builder: (context) {
+          return Text(data.timeInFormat(TimeViewFormat.h24,
+              requiredTime: state.visibleTime));
+        }),
+      ),
     );
   }
 }

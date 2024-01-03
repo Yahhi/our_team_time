@@ -9,8 +9,8 @@ class TimeItem {
   final String? personName;
   final Color color;
   final TimeZone timeZone;
-  final int? workStartInMinutes;
-  final int? workEndInMinutes;
+  final TimeOfDay? workStart;
+  final TimeOfDay? workEnd;
 
   static int? localToUtcDifference;
 
@@ -19,8 +19,8 @@ class TimeItem {
       this.personName,
       Color? customColor,
       required this.timeZone,
-      this.workStartInMinutes,
-      this.workEndInMinutes})
+      this.workStart,
+      this.workEnd})
       : color = customColor ?? _generateRandomColor();
 
   static Color _generateRandomColor() {
