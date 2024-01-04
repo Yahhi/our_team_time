@@ -9,7 +9,7 @@ import '../edit_item/edit_item_page.dart';
 class TimeListItem extends StatelessWidget {
   const TimeListItem({super.key, required this.data, required this.state});
 
-  final TimeItem data;
+  final LocationItem data;
   final MainState state;
 
   @override

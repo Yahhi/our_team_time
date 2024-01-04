@@ -5,7 +5,7 @@ import 'package:our_team_time/model/time_item.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  TimeItem.localToUtcDifference = DateTime.now().timeZoneOffset.inHours;
+  LocationItem.localToUtcDifference = DateTime.now().timeZoneOffset.inHours;
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(

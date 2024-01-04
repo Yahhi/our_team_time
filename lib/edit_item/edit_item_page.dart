@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:our_team_time/main_list/main_state.dart';
+import 'package:our_team_time/model/person.dart';
 import 'package:our_team_time/model/time_item.dart';
 import 'package:timezone/timezone.dart';
 
@@ -9,7 +10,7 @@ import '../core/localization/locale_keys.g.dart';
 class EditItemPage extends StatefulWidget {
   const EditItemPage({super.key, this.item, required this.state});
 
-  final TimeItem? item;
+  final LocationItem? item;
   final MainState state;
 
   @override
@@ -25,22 +26,31 @@ class _EditItemPage extends State<EditItemPage> {
   @override
   void initState() {
     cityController.text = widget.item?.cityName ?? '';
-    nameController.text = widget.item?.personName ?? '';
-    workStart = widget.item?.workStart;
-    workEnd = widget.item?.workEnd;
+    if (widget.item?.persons.isNotEmpty ?? false) {
+      nameController.text = widget.item!.persons.first.name;
+      workStart = widget.item!.persons.first.workStart;
+      workEnd = widget.item!.persons.first.workEnd;
+    }
     super.initState();
   }
 
   void saveDataOnQuit() {
-    final updated = TimeItem(
-      cityName: cityController.text, //TODO add unique key for this model
+    final updated = LocationItem(
+      id: widget.item?.id ?? 0,
+      cityName: cityController.text,
       timeZone: widget.item?.timeZone ??
           const TimeZone(0,
               isDst: true,
               abbreviation:
                   'example'), //TODO change mechanics to search for timezone based on location
-      personName: nameController.text, workEnd: workEnd,
-      workStart: workStart,
+      people: [
+        Person(
+          id: 0,
+          name: nameController.text,
+          workEnd: workEnd,
+          workStart: workStart,
+        ),
+      ],
     );
     if (widget.item == null) {
       widget.state.addItem(updated);

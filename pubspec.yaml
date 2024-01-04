@@ -18,15 +18,16 @@ dependencies:
     sdk: flutter
 
   # state management
-  flutter_mobx: ^2.2.0+1
-  mobx: ^2.3.0
-  mobx_codegen: ^2.6.0
+  flutter_mobx: ^2.2.0+2
+  mobx: ^2.3.0+1
+  mobx_codegen: ^2.6.0+1
   get_it: ^7.6.4
 
   # localization
   easy_localization: ^3.0.3
 
   #storage
+  path: ^1.8.3
   sqflite: ^2.3.0
 
   #other

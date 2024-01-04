@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:our_team_time/core/localization/locale_keys.g.dart';
+import 'package:our_team_time/core/storage/locations_db.dart';
 import 'package:our_team_time/main_list/main_state.dart';
 import 'package:our_team_time/settings/settings_page.dart';
 import 'package:our_team_time/widgets/time_list_item.dart';
@@ -21,7 +22,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
-    state = MainState();
+    state = MainState(LocationsDb());
     super.initState();
   }
 
@@ -49,8 +50,8 @@ class _MainPageState extends State<MainPage> {
       floatingActionButton: FloatingActionButton(
         tooltip: LocaleKeys.main_screen_add.tr(),
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => EditItemPage(state: state)));
+          Navigator.of(context).push(MaterialPageRoute<void>(
+              builder: (_) => EditItemPage(state: state)));
         },
         child: const Icon(Icons.add),
       ),

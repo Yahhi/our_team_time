@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:mobx/mobx.dart';
-import 'package:timezone/timezone.dart';
 
+import '../core/storage/locations_db.dart';
 import '../model/time_item.dart';
 
 part 'main_state.g.dart';
@@ -10,13 +10,15 @@ part 'main_state.g.dart';
 class MainState = _MainState with _$MainState;
 
 abstract class _MainState with Store {
-  _MainState() : _nowTime = DateTime.now() {
+  _MainState(this.db) : _nowTime = DateTime.now() {
     stickToNow();
     _fillItems();
   }
 
+  final LocationsDb db;
+
   @observable
-  ObservableList<TimeItem> items = ObservableList();
+  ObservableList<LocationItem> items = ObservableList();
 
   @observable
   DateTime _nowTime;
@@ -30,49 +32,30 @@ abstract class _MainState with Store {
   Timer? _nowUpdater;
 
   @action
-  void _fillItems() {
-    items.addAll([
-      TimeItem(
-        cityName: 'London',
-        timeZone: const TimeZone(
-          0,
-          isDst: false,
-          abbreviation: 'UTC',
-        ),
-      ),
-      TimeItem(
-        cityName: 'Moscow',
-        timeZone: const TimeZone(
-          3,
-          isDst: false,
-          abbreviation: 'UTC+3',
-        ),
-      ),
-      TimeItem(
-        cityName: 'Buenos Aires',
-        timeZone: const TimeZone(
-          -3,
-          isDst: false,
-          abbreviation: 'UTC-3',
-        ),
-      ),
-    ]);
+  Future<void> _fillItems() async {
+    await db.init();
+    items.addAll(await db.loadLocations());
   }
 
   @action
-  void addItem(TimeItem item) {
-    items.add(item);
+  Future<void> addItem(LocationItem item) async {
+    final itemWithId = await db.addLocation(item);
+    items.add(itemWithId);
   }
 
   @action
-  void updateItem(TimeItem oldItem, TimeItem updatedItem) {
+  Future<void> updateItem(
+      LocationItem oldItem, LocationItem updatedItem) async {
+    await db.removeLocation(oldItem);
     final index = items.indexOf(oldItem);
     items.removeAt(index);
-    items.insert(index, updatedItem);
+    final updatedWithId = await db.addLocation(updatedItem);
+    items.insert(index, updatedWithId);
   }
 
   @action
-  void deleteItem(TimeItem item) {
+  Future<void> deleteItem(LocationItem item) async {
+    await db.removeLocation(item);
     items.remove(item);
   }
 

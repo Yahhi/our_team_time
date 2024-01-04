@@ -1,32 +1,33 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:our_team_time/model/person.dart';
 import 'package:our_team_time/model/time_view_format.dart';
 import 'package:timezone/timezone.dart';
 
-class TimeItem {
+class LocationItem {
+  final int id;
   final String cityName;
-  final String? personName;
-  final Color color;
+  final List<Person> persons;
   final TimeZone timeZone;
-  final TimeOfDay? workStart;
-  final TimeOfDay? workEnd;
+  final double? latitude, longitude;
 
   static int? localToUtcDifference;
 
-  TimeItem(
-      {required this.cityName,
-      this.personName,
-      Color? customColor,
-      required this.timeZone,
-      this.workStart,
-      this.workEnd})
-      : color = customColor ?? _generateRandomColor();
+  LocationItem({
+    required this.id,
+    required this.cityName,
+    List<Person>? people,
+    required this.timeZone,
+    this.latitude,
+    this.longitude,
+  }) : persons = people ?? [];
 
-  static Color _generateRandomColor() {
-    var generatedColor = Random().nextInt(Colors.primaries.length);
-    return Colors.primaries[generatedColor];
-  }
+  LocationItem copyWithId(int id, List<Person> updatedPersons) => LocationItem(
+      id: id,
+      cityName: cityName,
+      timeZone: timeZone,
+      people: updatedPersons,
+      latitude: latitude,
+      longitude: longitude);
 
   TimeOfDay timeInZone({DateTime? requiredTime}) {
     final time = requiredTime ?? DateTime.now();
@@ -44,5 +45,13 @@ class TimeItem {
       case TimeViewFormat.h24:
         return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
     }
+  }
+
+  bool equals(LocationItem updated) {
+    return updated.cityName == cityName &&
+        updated.longitude == longitude &&
+        updated.latitude == latitude &&
+        updated.timeZone == timeZone &&
+        updated.persons == persons;
   }
 }

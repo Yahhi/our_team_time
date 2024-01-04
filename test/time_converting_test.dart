@@ -6,7 +6,8 @@ import 'package:timezone/timezone.dart';
 
 main() {
   test('utc time', () {
-    final TimeItem item = TimeItem(
+    final LocationItem item = LocationItem(
+      id: 1,
       cityName: 'London',
       timeZone: const TimeZone(
         0,
@@ -37,7 +38,8 @@ main() {
   });
 
   test('moscow time', () {
-    final TimeItem item = TimeItem(
+    final LocationItem item = LocationItem(
+      id: 2,
       cityName: 'Moscow',
       timeZone: const TimeZone(
         3,
@@ -72,7 +74,8 @@ main() {
   });
 
   test('Buenos-Aires time', () {
-    final TimeItem item = TimeItem(
+    final LocationItem item = LocationItem(
+      id: 3,
       cityName: 'Buenos Aires',
       timeZone: const TimeZone(
         -3,
