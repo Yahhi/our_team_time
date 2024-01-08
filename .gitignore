@@ -40,6 +40,10 @@ app.*.map.json
 # Code generation related
 *.g.dart
 
+# secrets
+google-services.json
+firebase_options.dart
+
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
