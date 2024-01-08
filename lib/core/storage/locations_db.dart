@@ -133,13 +133,13 @@ class LocationsDb {
     return List.generate(
         data.length,
         (index) => Person(
-            id: data[index][_peopleColumnId] as int,
-            name: data[index][_peopleColumnName] as String,
-            customColor: Color(data[index][_peopleColumnColor] as int),
-            workStart: fromMinutes(data[index][_peopleColumnStartWork] as int),
-            workEnd: fromMinutes(
-              data[index][_peopleColumnEndWork] as int,
-            )));
+              id: data[index][_peopleColumnId] as int,
+              name: data[index][_peopleColumnName] as String,
+              customColor: Color(data[index][_peopleColumnColor] as int),
+              workStart:
+                  fromMinutes(data[index][_peopleColumnStartWork] as int?),
+              workEnd: fromMinutes(data[index][_peopleColumnEndWork] as int?),
+            ));
   }
 
   /// returns id of inserted item
@@ -181,7 +181,8 @@ class LocationsDb {
   }
 }
 
-TimeOfDay fromMinutes(int data) {
+TimeOfDay? fromMinutes(int? data) {
+  if (data == null) return null;
   final hour = data ~/ 60;
   final minute = data - hour * 60;
   return TimeOfDay(hour: hour, minute: minute);
