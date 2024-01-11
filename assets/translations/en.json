@@ -9,8 +9,10 @@
   },
   "settings": {
     "title": "Settings",
-    "time_style": "Time Style",
-    "theme": "Theme",
+    "time_style": "Time in 12h/24h",
+    "time12h": "12h",
+    "time24h": "24h",
+    "theme": "Theme color",
     "view_type": {
       "title": "View priority",
       "option_name": "Name first",

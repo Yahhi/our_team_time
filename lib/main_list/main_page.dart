@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
+import 'package:get_it/get_it.dart';
 import 'package:our_team_time/core/localization/locale_keys.g.dart';
 import 'package:our_team_time/core/storage/locations_db.dart';
 import 'package:our_team_time/main_list/main_state.dart';
 import 'package:our_team_time/settings/settings_page.dart';
+import 'package:our_team_time/settings/settings_state.dart';
 import 'package:our_team_time/widgets/time_list_item.dart';
 
 import '../edit_item/edit_item_page.dart';
@@ -42,7 +44,8 @@ class _MainPageState extends State<MainPage> {
               tooltip: LocaleKeys.main_screen_settings.tr(),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute<void>(
-                    builder: (_) => const SettingsPage()));
+                    builder: (_) =>
+                        SettingsPage(GetIt.instance<SettingsState>())));
               },
               icon: const Icon(Icons.settings))
         ],

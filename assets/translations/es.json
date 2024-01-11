@@ -9,8 +9,10 @@
   },
   "settings": {
     "title": "Configuración",
-    "time_style": "Estilo de hora",
-    "theme": "Tema",
+    "time_style": "Estilo de hora 12h/24h",
+    "time12h": "12h",
+    "time24h": "24h",
+    "theme": "Color",
     "view_type": {
       "title": "Ver prioridad",
       "option_name": "Nombre primero",

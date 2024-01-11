@@ -5,9 +5,12 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:our_team_time/main_list/main_page.dart';
+import 'package:get_it/get_it.dart';
+import 'package:our_team_time/core/storage/settings_storage.dart';
 import 'package:our_team_time/model/time_item.dart';
+import 'package:our_team_time/settings/settings_state.dart';
 
+import 'app.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -23,6 +26,10 @@ void main() async {
     return true;
   };
 
+  final settingsStorage = SettingsStorage();
+  await settingsStorage.initialized;
+  final settingsState = SettingsState(settingsStorage);
+  GetIt.instance.registerSingleton(settingsState);
   LocationItem.localToUtcDifference = DateTime.now().timeZoneOffset.inHours;
   await EasyLocalization.ensureInitialized();
   runApp(
@@ -35,25 +42,6 @@ void main() async {
         path: 'assets/translations',
         fallbackLocale: const Locale('en', 'US'),
         useOnlyLangCode: true,
-        child: const MyApp()),
+        child: MyApp(settingsState)),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Team Timezones',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      home: const MainPage(),
-    );
-  }
 }

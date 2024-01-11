@@ -43,6 +43,8 @@ app.*.map.json
 # secrets
 google-services.json
 firebase_options.dart
+/ios/Runner/GoogleService-Info.plist
+/ios/firebase_app_id_file.json
 
 # Android Studio will place build artifacts here
 /android/app/debug
